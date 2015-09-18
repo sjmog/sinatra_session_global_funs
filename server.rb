@@ -2,8 +2,9 @@ require 'sinatra'
 
 enable :sessions
 
-get '/clear-session' do
+get '/clear-all' do
   session[:name] = nil
+  $names = []
   @name = session[:name]
   erb :session_cleared
 end
@@ -15,17 +16,16 @@ end
 
 post '/sign-up' do
   session[:name] = params[:name]
-  $name = params[:name]
+  $names << params[:name]
   redirect '/my-account'
 end
 
 get '/my-account' do
   @name = session[:name]
-  @other_name = ""
-  if $name
-    @other_name = $name
+  if $names
+    @other_names = $names
   else
-    @other_name = "No name set yet."
+    @other_names = []
   end
   erb :my_account
 end
