@@ -1,11 +1,9 @@
-<% if @name %>
-<h1>Welcome to your account, <%= @name %>.</h1>
-<p>Who else is here?</p>
+<h1>Hi there, <%= @username %>!</h1>
+
+<% if @users %>
 <ul>
-  <% @other_names.each do | other_name | %>
-  <li><%= other_name %></li>
+  <% @users.each do | user | %>
+  <li><%= user %></li>
   <% end %>
 </ul>
-<% else %>
-<p>You are not signed up. <a href="/">Go to sign up</a>.</p>
 <% end %>

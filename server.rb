@@ -2,30 +2,38 @@ require 'sinatra'
 
 enable :sessions
 
-get '/clear-all' do
-  session[:name] = nil
-  $names = []
-  @name = session[:name]
-  erb :session_cleared
+get '/clear-everything' do
+  erb :clear_everything
+end
+
+post '/clear-everything' do
+  reset_session_and_users
+  redirect '/clear-everything'
 end
 
 get '/' do
-  @name = session[:name]
+  @username = session[:username]
   erb :index
 end
 
 post '/sign-up' do
-  session[:name] = params[:name]
-  $names << params[:name]
+  session[:username] = params[:username]
+  setup_users
+  $users << params[:username]
   redirect '/my-account'
 end
 
 get '/my-account' do
-  @name = session[:name]
-  if $names
-    @other_names = $names
-  else
-    @other_names = []
-  end
+  @username = session[:username]
+  @users = $users
   erb :my_account
+end
+
+def setup_users
+  $users ||= []
+end
+
+def reset_session_and_users
+  $users = nil
+  session[:username] = nil
 end

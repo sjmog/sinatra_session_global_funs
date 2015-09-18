@@ -1,0 +1,11 @@
+<% if $name || session[:username] %>
+<h1>Wanna clear it all?</h1>
+<p>Wanna start aaaagaaain?</p>
+<form action="/clear-everything" method="post">
+  <input type="submit" value="Clear everything">
+</form>
+<% else %>
+
+<p>All is good! Go back to <a href="/">the beginning</a>.</p>
+
+<% end %>
