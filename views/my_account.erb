@@ -1,0 +1,9 @@
+<% if @name %>
+<h1>Welcome to your account, <%= @name %>.</h1>
+<p>Who else is here?</p>
+<ul>
+  <li><%= @other_name %></li>
+</ul>
+<% else %>
+<p>You are not signed up. <a href="/">Go to sign up</a>.</p>
+<% end %>

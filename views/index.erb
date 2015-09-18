@@ -1,0 +1,13 @@
+<% if @name %>
+<h1>You are already signed up, <%= @name %>!</h1>
+<p>Please go to <a href="/my-account">your account</a> to continue.</p>
+
+<% else %>
+
+<form action="/sign-up" method="post">
+  <label for="name">Please enter your name:</label>
+  <input type="text" name="name">
+  <input type="submit" value="Sign up">
+</form>
+
+<% end %>
